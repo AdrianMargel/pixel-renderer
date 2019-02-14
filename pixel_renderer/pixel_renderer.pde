@@ -36,7 +36,7 @@ void setup() {
   size(800, 800);
   
   //spawn in pixels
-  texture= new Pixel[200][200];
+  texture = new Pixel[200][200];
   for (int x=0; x<200; x++) {
     for (int y=0; y<200; y++) {
       //create a grid pattern
@@ -277,12 +277,18 @@ void mousePressed() {
     int brushSize=5;
     for (int x=0; x<brushSize; x++) {
       for (int y=0; y<brushSize; y++) {
-        texture[(int)(mouseX/4)+x][(int)(mouseY/4)+y].depthEnd-=1;
+        int rx=(int)(mouseX/4)+x;
+        int ry=(int)(mouseY/4)+y;
+        if(rx>=0&&rx<texture.length&&ry>=0&&ry<texture[x].length)
+          texture[rx][ry].depthEnd-=1;
       }
     }
     for (int x=0; x<brushSize+2; x++) {
       for (int y=0; y<brushSize+2; y++) {
-        texture[(int)(mouseX/4)+x-1][(int)(mouseY/4)+y-1].depthEnd-=1;
+        int rx=(int)(mouseX/4)+x-1;
+        int ry=(int)(mouseY/4)+y-1;
+        if(rx>=0&&rx<texture.length&&ry>=0&&ry<texture[x].length)
+          texture[rx][ry].depthEnd-=1;
       }
     }
     for (int x=0; x<texture.length; x++) {
@@ -295,7 +301,10 @@ void mousePressed() {
     int brushSize=5;
     for (int x=0; x<brushSize; x++) {
       for (int y=0; y<brushSize; y++) {
-        texture[(int)(mouseX/4)+x][(int)(mouseY/4)+y].baseColor=new RGBColor((int)random(60,80),(int)random(200,240),(int)random(50,80));
+        int rx=(int)(mouseX/4)+x;
+        int ry=(int)(mouseY/4)+y;
+        if(rx>=0&&rx<texture.length&&ry>=0&&ry<texture[x].length)
+          texture[rx][ry].baseColor=new RGBColor((int)random(60,80),(int)random(200,240),(int)random(50,80));
       }
     }
   }
